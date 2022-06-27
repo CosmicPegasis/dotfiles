@@ -1,0 +1,29 @@
+set icons true
+set ignorecase true
+set drawbox
+
+# Remove default keybinds
+map e
+map w
+map d
+
+map dd cut
+map dD delete
+
+# Custom keybinds
+map ee $$EDITOR "$f"
+map eo &nohup okular "$f" &
+map ut $tar xvf "$f"
+map o &rifle "$f"
+
+# Ranger's open with command
+cmd open-with %"$@" "$fx"
+map ` push :open-with<space>
+
+cmd mkdir ${{
+    printf "\nEnter dir name: "
+    read dirname
+    mkdir ./${dirname}
+    echo "Created $dirname" 
+
+}}
