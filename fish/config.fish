@@ -3,6 +3,8 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+xset r rate 200 30
+
 # Variables
 export WINEPREFIX=/home/cosmic/d_drive/.wine
 export EDITOR=nvim
