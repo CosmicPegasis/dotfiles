@@ -135,7 +135,7 @@ super + F2
 super + F5
     playerctl previous
 
-super + F6
+F6
     playerctl play-pause
 
 super + F7
