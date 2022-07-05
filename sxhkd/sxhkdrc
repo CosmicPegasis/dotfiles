@@ -132,13 +132,14 @@ super + F1
 
 super + F2
     amixer -D pulse sset Master 5%-
-super + F5
+
+XF86AudioPrev
     playerctl previous
 
-F6
+XF86AudioPlay
     playerctl play-pause
 
-super + F7
+XF86AudioNext
     playerctl next
 
 super + F8
