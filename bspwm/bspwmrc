@@ -45,4 +45,5 @@ $HOME/.config/polybar/launch.sh &
 nitrogen --restore &
 killall picom
 picom --experimental-backends &
+dunst &
 
