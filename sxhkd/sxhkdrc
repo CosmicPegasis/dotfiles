@@ -121,11 +121,8 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # Open web browser
-super + b ; {b, o, f, t, Return, y, F10}
-    {brave, okular, firefox, alacritty --class nnn\,nnn -e fish -c lf, alacritty --class Alacritty\,Alacritty_floating, ~/coding/scripts/download_youtube.sh, ~/coding/scripts/join_coaching_link.sh}
-
-#super + @F10
-#
+super + b ; {b, o, t, s}
+    {brave, okular, alacritty --class nnn\,nnn -e fish -c lf, spotify}
 
 super + F1
     amixer -D pulse sset Master 5%+
@@ -147,3 +144,6 @@ XF86AudioNext
 
 super + F8
     playerctl pause
+
+super + {Z, X}
+    bluetoothctl {connect 74:45:CE:00:46:AC, disconnect}
