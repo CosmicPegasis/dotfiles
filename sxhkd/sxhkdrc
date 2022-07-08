@@ -147,3 +147,5 @@ super + F8
 
 super + {Z, X}
     bluetoothctl {connect 74:45:CE:00:46:AC, disconnect}
+super + {z, x}
+    bluetoothctl {connect B8:D5:0B:2E:FD:56, disconnect}
