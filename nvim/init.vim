@@ -185,6 +185,9 @@ let g:CtrlSpaceDefaultMappingKey = "<C-space> "
 
 let g:CtrlSpaceUseTabline = 1
 
+" Markdown Config
+let g:vim_markdown_folding_disabled = 1
+
 " Custom Keybinds
 nnoremap " :NERDTreeToggle<CR>
 nnoremap gs :source ~/.config/nvim/init.vim<CR>
