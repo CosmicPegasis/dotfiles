@@ -13,6 +13,8 @@ map dD delete
 # Custom keybinds
 map ee $$EDITOR "$f"
 map eo &nohup okular "$f" &
+map ed !dragon-drop "$f" --and-exit
+map ec !code "$f"
 map ut $tar xvf "$f"
 map o &rifle "$f"
 
