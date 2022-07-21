@@ -1,0 +1,103 @@
+{
+  "editor.fontSize": 13,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": true,
+  "editor.hover.delay": 100,
+  "editor.semanticHighlighting.enabled": "true",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "redhat.telemetry.enabled": false,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "k"],
+      "after": ["<esc>"]
+    },
+    {
+      "before": ["k", "j"],
+      "after": ["<esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["K"],
+      "after": ["g", "t"]
+    },
+    {
+      "before": ["J"],
+      "after": ["g", "T"]
+    }
+  ],
+  "security.workspace.trust.untrustedFiles": "open",
+  "telemetry.telemetryLevel": "off",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "kite.showWelcomeNotificationOnStartup": false,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "C_Cpp.autocompleteAddParentheses": true,
+  "cmake.configureOnOpen": true,
+  "window.zoomLevel": 1,
+  "workbench.colorCustomizations": {
+    "[Material Theme Ocean]": {
+      "activityBarBadge.background": "#2979FF",
+      "activityBar.activeBorder": "#2979FF",
+      "list.activeSelectionForeground": "#2979FF",
+      "list.inactiveSelectionForeground": "#2979FF",
+      "list.highlightForeground": "#2979FF",
+      "scrollbarSlider.activeBackground": "#2979FF50",
+      "editorSuggestWidget.highlightForeground": "#2979FF",
+      "textLink.foreground": "#2979FF",
+      "progressBar.background": "#2979FF",
+      "pickerGroup.foreground": "#2979FF",
+      "tab.activeBorder": "#2979FF",
+      "notificationLink.foreground": "#2979FF",
+      "editorWidget.resizeBorder": "#2979FF",
+      "editorWidget.border": "#2979FF",
+      "settings.modifiedItemIndicator": "#2979FF",
+      "settings.headerForeground": "#2979FF",
+      "panelTitle.activeBorder": "#2979FF",
+      "breadcrumb.activeSelectionForeground": "#2979FF",
+      "menu.selectionForeground": "#2979FF",
+      "menubar.selectionForeground": "#2979FF",
+      "editor.findMatchBorder": "#2979FF",
+      "selection.background": "#2979FF40",
+      "statusBarItem.remoteBackground": "#2979FF"
+    }
+  },
+  "materialTheme.accent": "Blue",
+  "terminal.integrated.defaultProfile.linux": "fish",
+  "svelte.enable-ts-plugin": true,
+  "cmake.generator": "Unix Makefiles",
+  "editor.fontFamily": "'JetBrainsMono Nerd Font Mono'",
+  "editor.fontWeight": "normal",
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "editor.guides.highlightActiveBracketPair": false,
+  "workbench.iconTheme": "eq-material-theme-icons-ocean",
+  "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.startupEditor": "none",
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.useInlineCompletions": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "markdown": "html"
+  },
+  "vsicons.dontShowNewVersionMessage": true,
+  "emmet.excludeLanguages": [],
+  "editor.suggest.snippetsPreventQuickSuggestions": false
+}
