@@ -27,6 +27,8 @@ Plug 'mhinz/vim-startify'                                                       
 Plug 'skywind3000/vim-terminal-help'                                                        "Better Terminal
 Plug 'christoomey/vim-tmux-navigator'                                                       "Tmux Integration
 Plug 'vim-ctrlspace/vim-ctrlspace'                                                          "Workspace Management
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}     "Markdown Preview
+Plug 'yuttie/comfortable-motion.vim'                                                        "Comfortable Scolling
 "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 " Python
 "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -148,7 +150,7 @@ nmap <silent> <leader>o :call CocAction('showOutline')<CR>
 " Emmet Configuration
 let g:user_emmet_mode='a'
 let g:user_emmet_install_global = 0
-autocmd FileType html EmmetInstall
+autocmd FileType html,css,md EmmetInstall
 let g:user_emmet_leader_key=','
 
 " Prettier for vim configuration
