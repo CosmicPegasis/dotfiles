@@ -29,6 +29,9 @@ Plug 'christoomey/vim-tmux-navigator'                                           
 Plug 'vim-ctrlspace/vim-ctrlspace'                                                          "Workspace Management
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}     "Markdown Preview
 Plug 'yuttie/comfortable-motion.vim'                                                        "Comfortable Scolling
+Plug 'folke/tokyonight.nvim'                                                                "Tokyo Night Theme
+Plug 'projekt0n/github-nvim-theme'                                                          "Github Theme
+Plug 'ryanoasis/vim-devicons'                                                                "Dev Icons
 "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 " Python
 "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -37,7 +40,6 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}                          
 "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 " HTML and CSS
 "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Plug 'mattn/emmet-vim'                                                                      "Easier HTML and CSS
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }                                      "Prettier for HTML and CSS
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}                             "Live Preview 
 " Plug 'Yggdroot/indentLine'                                                                  "Indent Lines for HTML
@@ -54,6 +56,8 @@ call plug#end()
 
 
 let g:material_theme_style = 'ocean-community'
+let g:tokyonight_style = 'night'
+set background=dark
 
 " air-line
 let g:airline_powerline_fonts = 1
@@ -132,7 +136,10 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 command! -nargs=0 Format :call CocActionAsync('format')
 
 " Show Documentation
-nnoremap <silent> S :call <SID>show_documentation()<CR>
+nmap gh :call CocAction('doHover')<CR>
+
+" Organize imports on save
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 let g:coc_default_semantic_highlight_groups = 1
 
@@ -147,11 +154,6 @@ nmap <silent> <leader>rf <Plug>(coc-refactor)
 nmap <silent> <leader>rn <Plug>(coc-rename)
 nmap <silent> <leader>o :call CocAction('showOutline')<CR>
 
-" Emmet Configuration
-let g:user_emmet_mode='a'
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,md EmmetInstall
-let g:user_emmet_leader_key=','
 
 " Prettier for vim configuration
 let g:prettier#exec_cmd_async = 1
@@ -215,10 +217,6 @@ nnoremap gcj <c-w>j:q<CR>
 nnoremap gck <c-w>k:q<CR>
 nnoremap gcl <c-w>l:q<CR>
 nnoremap gch <c-w>h:q<CR>
-nnoremap gj <c-w>j<CR>
-nnoremap gk <c-w>k
-nnoremap gl <c-w>l
-nnoremap gh <c-w>h
 
 nnoremap <leader>b :!cd debug && make<CR>
 
@@ -269,7 +267,7 @@ autocmd FileType tex nnoremap <F5> :LLPStartPreview<CR>
 
 
 " Vim settings
-colorscheme material
+colorscheme tokyonight
 
 set relativenumber                          " show line numbers
 set termguicolors
