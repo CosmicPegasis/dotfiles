@@ -9,4 +9,4 @@ xset r rate 200 30
 export WINEPREFIX=/home/cosmic/d_drive/.wine
 export EDITOR=nvim
 export NNN_BMS="d:$HOME/d_drive/Downloads;c:$HOME/coding;h:$HOME/"
-export TERM=alacritty
+export PATH="$PATH:/home/cosmic/go/bin"
