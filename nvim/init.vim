@@ -139,7 +139,7 @@ command! -nargs=0 Format :call CocActionAsync('format')
 nmap gh :call CocAction('doHover')<CR>
 
 " Organize imports on save
-autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.go, *.cpp, *.c :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 let g:coc_default_semantic_highlight_groups = 1
 
@@ -267,7 +267,7 @@ autocmd FileType tex nnoremap <F5> :LLPStartPreview<CR>
 
 
 " Vim settings
-colorscheme tokyonight
+colorscheme github_dark
 
 set relativenumber                          " show line numbers
 set termguicolors

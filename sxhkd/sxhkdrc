@@ -121,8 +121,8 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # Open web browser
-super + b ; {b, o, t, s}
-    {brave, okular, alacritty --class nnn\,nnn -e fish -c lf, spotify}
+super + b ; {b, o, t, s, S}
+    {brave, okular, alacritty --class nnn\,nnn -e fish -c lf, flameshot gui, loginctl suspend}
 
 super + F1
     amixer -D pulse sset Master 5%+
@@ -141,9 +141,6 @@ XF86AudioPause
 
 XF86AudioNext
     playerctl next
-
-super + F8
-    playerctl pause
 
 super + {Z, X}
     bluetoothctl {connect 74:45:CE:00:46:AC, disconnect}

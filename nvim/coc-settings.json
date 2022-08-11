@@ -31,7 +31,7 @@
         "default": "\uf29c"
     },
     "colors.filetype": ["*"],
-    "diagnostic.enableMessage": false,
+    "diagnostic.enableMessage": true,
     "diagnostic.virtualText": true,
     "diagnostic.virtualTextCurrentLineOnly": false,
     "svelte.enable-ts-plugin": true,
