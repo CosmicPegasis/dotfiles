@@ -69,8 +69,8 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: JetBrainsMonoNerdFont
-    style: Normal
+    family: FiraCode
+    style: Regular
   #bold:
     #family: JetBrains Mono
     #style:
