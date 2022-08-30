@@ -1,11 +1,13 @@
-#! /bin/sh
+#!/bin/sh
 
-jetxkbmap us &
+#jetxkbmap us &
+xrandr --output HDMI-0 --mode 1920x1080 --output DVI-D-0 --mode 1366x768 --right-of HDMI-0
 xset r rate 200 40 &
 xsetroot -cursor_name left_ptr &
 xset -dpms s off
 killall sxhkd
 sxhkd &
+xmodmap ~/.Xmodmap &
 WINEPREFIX=/home/cosmic/d_drive/.wine &
 
 bspc monitor HDMI-0 -d I II III IV V &
