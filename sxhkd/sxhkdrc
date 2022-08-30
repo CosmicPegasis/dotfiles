@@ -122,7 +122,7 @@ super + {Left,Down,Up,Right}
 
 # Open web browser
 super + b ; {b, o, t, s, S}
-    {brave, okular, alacritty --class nnn\,nnn -e fish -c lf, flameshot gui, loginctl suspend}
+    {brave, okular, alacritty --class nnn\,nnn -e fish -c lf, flameshot gui,systemctl suspend}
 
 super + F1
     amixer -D pulse sset Master 5%+
