@@ -31,12 +31,9 @@ Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn in
 Plug 'yuttie/comfortable-motion.vim'                                                        "Comfortable Scolling
 Plug 'folke/tokyonight.nvim'                                                                "Tokyo Night Theme
 Plug 'projekt0n/github-nvim-theme'                                                          "Github Theme
-Plug 'ryanoasis/vim-devicons'                                                                "Dev Icons
-"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-" Python
-"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }                    "Python Integration and IDE Features
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}                                      "Semantic Highlighting for Python
+Plug 'ryanoasis/vim-devicons'                                                               "Dev Icons
+Plug 'luochen1990/rainbow'                                                                  "Bracket Colours
+Plug 'jceb/vim-orgmode'                                                                     "Org Mode for vim
 "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 " HTML and CSS
 "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -95,18 +92,19 @@ let g:airline_exclude_preview = 1
 " Python-mode
 let g:pymode = 1
 let g:pymode_python = 'python3'
-let g:pymode_run_bind = '<F5>'
+" let g:pymode_run_bind = '<F5>'
 let g:pymode_indent = 1
 
 " Coc config
 let g:coc_global_extensions = ['coc-python']
 
 " use <tab> for trigger completion and navigate to the next complete item
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? coc#_select_confirm() :
+"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#confirm() : "\<tab>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -144,6 +142,8 @@ autocmd BufWritePre *.go, *.cpp, *.c :silent call CocAction('runCommand', 'edito
 let g:coc_default_semantic_highlight_groups = 1
 
 autocmd BufWritePre *.c,*.h,*.cpp,*.hpp Format
+
+" Vim sneak config
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -192,6 +192,9 @@ let g:CtrlSpaceUseTabline = 1
 " Markdown Config
 let g:vim_markdown_folding_disabled = 1
 
+" Colored Braces
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
 " Custom Keybinds
 nnoremap " :NERDTreeToggle<CR>
 nnoremap gs :source ~/.config/nvim/init.vim<CR>
@@ -201,8 +204,11 @@ nnoremap gnv :vsplit
 nnoremap gnt :tabedit<CR>
 nnoremap gnT <C-w>T
 nnoremap <leader>cd :cd %:p:h<CR>:CocRestart<CR><CR>
-nnoremap <leader>tt :tabedit<CR>:terminal<CR>
-nnoremap <leader>tn :tabedit<CR>:terminal<CR>aranger<CR>
+nnoremap <silent> <leader>tt :!tmux neww<CR><CR>
+nnoremap <silent> <leader>tv :!tmux split-window -h<CR><CR>
+nnoremap <silent> <leader>th :!tmux split-window -v<CR><CR>
+nnoremap <silent> <F5> :!tmux split-window -v "./run.sh && fish"<CR><CR>
+nnoremap <silent> <leader>tn :tabedit<CR>:terminal<CR>aranger<CR>
 nnoremap gnc :e ~/.config/nvim/init.vim<CR>
 
 " Skipping brackets
@@ -241,6 +247,8 @@ inoremap <M-7> <Esc>7gt
 inoremap <M-8> <Esc>8gt
 inoremap <M-9> <Esc>9gt
 
+inoremap <c-g> <Esc>
+
 nnoremap J gT
 nnoremap K gt
 
@@ -262,12 +270,12 @@ nnoremap <leader>Gg :tab Git<CR>
 nnoremap <leader>Gp :Git push origin master<CR>
 
 " Latex Keybinds
-autocmd FileType tex nnoremap <leader><F5> :!pdflatex --shell-escape %<CR>
-autocmd FileType tex nnoremap <F5> :LLPStartPreview<CR>
+" autocmd FileType tex nnoremap <leader><F5> :!pdflatex --shell-escape %<CR>
+" autocmd FileType tex nnoremap <F5> :LLPStartPreview<CR>
 
 
 " Vim settings
-colorscheme github_dark
+colorscheme material
 
 set relativenumber                          " show line numbers
 set termguicolors
@@ -306,5 +314,3 @@ vnoremap  <leader>y  "+y
 set incsearch	                            " incremental search
 set hlsearch	                            " highlight search results
 
-" Temp
-autocmd FileType c,cpp map <leader>dd :!tmux splitw -h -c '{current_path}'/debug -l 60 -S -n 'gdb' gdb<CR>
