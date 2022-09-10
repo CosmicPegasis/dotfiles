@@ -10,7 +10,7 @@
    '("5f128efd37c6a87cd4ad8e8b7f2afaba425425524a68133ac0efd87291d05874" "2e05569868dc11a52b08926b4c1a27da77580daa9321773d92822f7a639956ce" "ddffe74bc4bf2c332c2c3f67f1b8141ee1de8fd6b7be103ade50abb97fe70f0c" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "fe1c13d75398b1c8fd7fdd1241a55c286b86c3e4ce513c4292d01383de152cb7" default))
  '(org-agenda-files nil)
  '(package-selected-packages
-   '(flycheck smartparens autopair company-box typescript-mode lsp-ivy dired-hide-dotfiles dired-single all-the-icons-dired vterm lsp-dart dart-mode dired visual-fill-column helpful org-bullets magit general evil-collection all-the-icons doom-themes counsel ivy-rich which-key rainbow-delimiters doom-modeline dap-mode color-theme-sanityinc-tomorrow pdf-tools phi-autopair projectile helm-lsp helm clang-capf company lsp-ui lsp-mode dracula-theme evil)))
+   '(cmake-font-lock lsp-cmake flycheck smartparens autopair company-box typescript-mode lsp-ivy dired-hide-dotfiles dired-single all-the-icons-dired vterm lsp-dart dart-mode dired visual-fill-column helpful org-bullets magit general evil-collection all-the-icons doom-themes counsel ivy-rich which-key rainbow-delimiters doom-modeline dap-mode color-theme-sanityinc-tomorrow pdf-tools phi-autopair projectile helm-lsp helm clang-capf company lsp-ui lsp-mode dracula-theme evil)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -18,10 +18,27 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(set-face-attribute 'default nil :font "FiraCode")
-(set-face-attribute 'variable-pitch nil :font "Roboto" :height 180 :weight 'regular)
-(set-face-attribute 'default nil :height 140)
+;; (set-face-attribute 'default nil :font "FiraCode")
+;; (set-face-attribute 'variable-pitch nil :font "Roboto" :height 180 :weight 'regular)
+;; (set-face-attribute 'default nil :height 140)
 
+(defun efs/set-font-faces ()
+  (message "Setting faces!")
+  (set-face-attribute 'default nil :font "FiraCode" :height 140)
+
+  ;; Set the fixed pitch face
+  (set-face-attribute 'fixed-pitch nil :font "FiraCode")
+
+  ;; Set the variable pitch face
+  (set-face-attribute 'variable-pitch nil :font "Roboto" :height 180 :weight 'regular))
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                ;; (setq doom-modeline-icon t)
+                (with-selected-frame frame
+                  (efs/set-font-faces))))
+    (efs/set-font-faces))
 ;; Custom Commands
 (defun random-alnum () "Helper function for new-vterm."
   (let* ((alnum "abcdefghijklmnopqrstuvwxyz0123456789")
@@ -40,7 +57,19 @@
 			      (random-alnum))) 'false)
        (tab-bar-new-tab)
        (vterm))
+(defun proper-close-tab () "Closes tab and kill buffer." (interactive)
+       (kill-this-buffer)
+       (tab-bar-close-tab))
 	
+(defun kill-other-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer
+	  (delq (current-buffer)
+                (remove-if-not 'buffer-file-name (buffer-list)))))
+(defun close-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
 
 (setq inhibit-startup-message t)
 
@@ -89,9 +118,9 @@
   :init
     (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
   :config
-    (add-hook 'c++-mode-hook #'lsp)
     (add-hook 'elisp-mode-hook #'lsp)
     (add-hook 'python-mode-hook #'lsp)
+    (add-hook 'c++-mode-hook #'lsp)
     (add-hook 'dart-mode-hook #'lsp)
     (lsp-semantic-tokens-mode)
   )
@@ -147,11 +176,13 @@
 (use-package color-theme-sanityinc-tomorrow)
 (use-package dap-mode)
 (require 'dap-cpptools)
+(dap-cpptools-setup)
 (use-package doom-modeline
   :init (doom-modeline-mode 1))
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
+
 
 (use-package which-key
   :init (which-key-mode)
@@ -192,7 +223,8 @@
    "b" '(counsel-switch-buffer :whick-key "switch buffers")
    "v" '(new-vterm :whick-key "vterm")
    "c" '(find-config :which-key "config")
-   "x" '(kill-this-buffer :whick-key "kill current buffer")
+   "x" '(proper-close-tab :whick-key "kill buffer and close tab")
+   "K" '(close-all-buffers :whick-key "kills all buffers")
    ))
 
 ;; keybinds
@@ -326,5 +358,18 @@
   :ensure t
   :init (global-flycheck-mode))
 
+(use-package cmake-mode
+  :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'")
+  :hook (cmake-mode . lsp-deferred))
+
+(use-package cmake-font-lock
+  :after cmake-mode
+  :config (cmake-font-lock-activate))
+
 ;; Kill active processes with no confirmation
 (setq kill-buffer-query-functions (delq 'process-kill-buffer-query-function kill-buffer-query-functions))
+
+
+;; Set tab mode to indent four
+(setq-default c-basic-offset 4)
+
