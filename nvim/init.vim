@@ -12,7 +12,7 @@ Plug 'airblade/vim-gitgutter'                                                   
 Plug 'vim-airline/vim-airline'                                                              "Status Bar
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }                                        "Material Theme
-Plug 'neoclide/coc.nvim', {'branch': 'release'}                                             "Autcomplete
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}                                             "Autcomplete
 Plug 'lervag/vimtex'                                                                        "Latex Support
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }                                      "Latex Live Preview
 Plug 'honza/vim-snippets'
@@ -27,13 +27,13 @@ Plug 'mhinz/vim-startify'                                                       
 Plug 'skywind3000/vim-terminal-help'                                                        "Better Terminal
 Plug 'christoomey/vim-tmux-navigator'                                                       "Tmux Integration
 Plug 'vim-ctrlspace/vim-ctrlspace'                                                          "Workspace Management
-Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}     "Markdown Preview
+"Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}     "Markdown Preview
 Plug 'yuttie/comfortable-motion.vim'                                                        "Comfortable Scolling
 Plug 'folke/tokyonight.nvim'                                                                "Tokyo Night Theme
 Plug 'projekt0n/github-nvim-theme'                                                          "Github Theme
 Plug 'ryanoasis/vim-devicons'                                                               "Dev Icons
 Plug 'luochen1990/rainbow'                                                                  "Bracket Colours
-Plug 'jceb/vim-orgmode'                                                                     "Org Mode for vim
+"Plug 'jceb/vim-orgmode'                                                                     "Org Mode for vim
 "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 " HTML and CSS
 "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -49,6 +49,26 @@ Plug 'leafOfTree/vim-svelte-plugin'                                             
 "Plug 'dense-analysis/ale'                                                                   "Linting for C++
 Plug 'jackguo380/vim-lsp-cxx-highlight'                                                     "Semantic Highliting for C++
 "========================================================================================================================================================================================
+"Completion
+" LSP Support
+Plug 'neovim/nvim-lspconfig'             " Required
+Plug 'williamboman/mason.nvim'           " Optional
+Plug 'williamboman/mason-lspconfig.nvim' " Optional
+
+" Autocompletion Engine
+Plug 'hrsh7th/nvim-cmp'         " Required
+Plug 'hrsh7th/cmp-nvim-lsp'     " Required
+Plug 'hrsh7th/cmp-buffer'       " Optional
+Plug 'hrsh7th/cmp-path'         " Optional
+Plug 'saadparwaiz1/cmp_luasnip' " Optional
+Plug 'hrsh7th/cmp-nvim-lua'     " Optional
+
+"  Snippets
+Plug 'L3MON4D3/LuaSnip'             " Required
+Plug 'rafamadriz/friendly-snippets' " Optional
+
+Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v1.x'}
+"
 call plug#end()
 
 
@@ -96,7 +116,7 @@ let g:pymode_python = 'python3'
 let g:pymode_indent = 1
 
 " Coc config
-let g:coc_global_extensions = ['coc-python']
+"let g:coc_global_extensions = ['coc-python']
 
 " use <tab> for trigger completion and navigate to the next complete item
 " inoremap <silent><expr> <TAB>
@@ -104,55 +124,55 @@ let g:coc_global_extensions = ['coc-python']
 "       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
 "       \ <SID>check_back_space() ? "\<TAB>" :
 "       \ coc#refresh()
-inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#confirm() : "\<tab>"
+"inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#confirm() : "\<tab>"
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+"function! s:check_back_space() abort
+"  let col = col('.') - 1
+"  return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
 
-let g:coc_snippet_next = '<tab>'
+"let g:coc_snippet_next = '<tab>'
 " Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+"imap <C-l> <Plug>(coc-snippets-expand)
 
 " Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+"vmap <C-j> <Plug>(coc-snippets-select)
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+"let g:coc_snippet_next = '<c-j>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
+"let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+"imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Use <leader>x for convert visual selected code to snippet
-xmap <leader>x  <Plug>(coc-convert-snippet)
+"xmap <leader>x  <Plug>(coc-convert-snippet)
 
 " Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocActionAsync('format')
+"command! -nargs=0 Format :call CocActionAsync('format')
 
 " Show Documentation
-nmap gh :call CocAction('doHover')<CR>
+"nmap gh :call CocAction('doHover')<CR>
 
 " Organize imports on save
-autocmd BufWritePre *.go, *.cpp, *.c :silent call CocAction('runCommand', 'editor.action.organizeImport')
+"autocmd BufWritePre *.go, *.cpp, *.c :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
-let g:coc_default_semantic_highlight_groups = 1
+"let g:coc_default_semantic_highlight_groups = 1
 
-autocmd BufWritePre *.c,*.h,*.cpp,*.hpp Format
+"autocmd BufWritePre *.c,*.h,*.cpp,*.hpp Format
 
 " Vim sneak config
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> <leader>rf <Plug>(coc-refactor)
-nmap <silent> <leader>rn <Plug>(coc-rename)
-nmap <silent> <leader>o :call CocAction('showOutline')<CR>
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
+"nmap <silent> <leader>rf <Plug>(coc-refactor)
+"nmap <silent> <leader>rn <Plug>(coc-rename)
+"nmap <silent> <leader>o :call CocAction('showOutline')<CR>
 
 
 " Prettier for vim configuration
@@ -164,19 +184,19 @@ augroup VimPrettier
     autocmd!
 
 " Ale Config
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 1
-let g:ale_fix_on_save = 1
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
+"let g:ale_lint_on_enter = 1
+"let g:ale_lint_on_save = 1
+"let g:ale_lint_on_text_changed = 1
+"let g:ale_fix_on_save = 1
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
 
-let g:ale_fixers = {
-            \ 'cpp': ['astyle'],
-            \ 'c': ['astyle']
-            \}
+"let g:ale_fixers = {
+"            \ 'cpp': ['astyle'],
+"            \ 'c': ['astyle']
+"            \}
 
 " C++ Semantic Highlisting Config
-let g:lsp_cxx_hl_use_text_props = 1
+"let g:lsp_cxx_hl_use_text_props = 1
 
 " Latex Preview Conf
 let g:livepreview_engine = 'pdflatex' . ' --shell-escape'
@@ -195,8 +215,67 @@ let g:vim_markdown_folding_disabled = 1
 " Colored Braces
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
+lua << EOF
+local lsp = require('lsp-zero').preset({
+  name = 'minimal',
+  set_lsp_keymaps = true,
+  manage_nvim_cmp = true,
+  suggest_lsp_servers = false,
+})
+
+-- (Optional) Configure lua language server for neovim
+lsp.nvim_workspace()
+
+lsp.setup()
+EOF
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all" (the four listed parsers should always be installed)
+  ensure_installed = { "c", "lua", "vim", "help" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+
+  -- List of parsers to ignore installing (for "all")
+  ignore_install = { "javascript" },
+
+  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    disable = {},
+    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+    disable = function(lang, buf)
+        local max_filesize = 100 * 1024 -- 100 KB
+        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+        if ok and stats and stats.size > max_filesize then
+            return true
+        end
+    end,
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
+
 " Custom Keybinds
-nnoremap " :NERDTreeToggle<CR>
+nnoremap '' :NERDTreeToggle<CR>
 nnoremap gs :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>f :Files ~<CR>
 nnoremap <leader>t :tabnew<CR>
@@ -210,6 +289,7 @@ nnoremap <silent> <leader>th :!tmux split-window -v<CR><CR>
 nnoremap <silent> <F5> :!tmux split-window -v "./run.sh && fish"<CR><CR>
 nnoremap <silent> <leader>tn :tabedit<CR>:terminal<CR>aranger<CR>
 nnoremap gnc :e ~/.config/nvim/init.vim<CR>
+nnoremap <silent> ff    <cmd>lua vim.lsp.buf.format()<CR>
 
 " Skipping brackets
 inoremap <m-h> <Left>
@@ -298,7 +378,7 @@ set nowritebackup                           " only in case you don't want a back
 set noswapfile 	                            " no swap files
 set backspace=indent,eol,start              " backspace removes all (indents, EOLs, start) What is start?
 set scrolloff=10                            " let 10 lines before/after cursor during scroll
-set clipboard+=unnamedplus                  " use system clipboard
+set clipboard=unnamedplus                   " use system clipboard
 set shell=fish
 set exrc                                    " enable usage of additional .vimrc files from working directory set secure                                  " prohibit .vimrc files to execute shell, create files, etc...
 syntax on
